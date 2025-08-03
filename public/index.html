@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>NeonFit | Ultra Modern Gym</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style>
+		body {
+			font-family: 'Roboto', Arial, sans-serif;
+			background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #9d50bb 100%);
+			color: #e0e0e0;
+			margin: 0;
+			padding: 0;
+			min-height: 100vh;
+		}
+
+		header {
+			background: rgba(30, 60, 114, 0.98);
+			box-shadow: 0 4px 24px rgba(157, 80, 187, 0.10);
+			padding: 0.7rem 0;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+
+		.logo a {
+			font-family: 'Orbitron', sans-serif;
+			font-size: 2.5rem;
+			color: #fff;
+			letter-spacing: 3px;
+			text-decoration: none;
+			text-shadow: 0 2px 16px #9d50bb;
+		}
+
+		.logo span {
+			color: #00ffe7;
+			font-weight: 900;
+			text-shadow: 0 2px 16px #00ffe7;
+		}
+
+		.nav ul {
+			display: flex;
+			gap: 2rem;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.nav ul li a {
+			color: #fff;
+			font-weight: 700;
+			text-decoration: none;
+			padding: 0.6rem 1.3rem;
+			border-radius: 30px;
+			background: rgba(157, 80, 187, 0.08);
+			transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+			box-shadow: 0 2px 8px rgba(0, 255, 231, 0.08);
+		}
+
+		.nav ul li a.active,
+		.nav ul li a:hover {
+			background: linear-gradient(90deg, #00ffe7 0%, #9d50bb 100%);
+			color: #1e3c72;
+			box-shadow: 0 2px 16px #00ffe7;
+		}
+
+		.ham-burger {
+			display: none;
+		}
+
+		@media (max-width: 900px) {
+			.nav ul {
+				flex-direction: column;
+				background: #1e3c72;
+				position: absolute;
+				top: 60px;
+				right: 0;
+				width: 220px;
+				display: none;
+				border-radius: 0 0 0 24px;
+				box-shadow: 0 8px 32px #9d50bb44;
+			}
+
+			.nav.open ul {
+				display: flex;
+			}
+
+			.ham-burger {
+				display: block;
+				cursor: pointer;
+				position: absolute;
+				right: 30px;
+				top: 20px;
+			}
+		}
+
+		section {
+			padding: 70px 0 50px 0;
+		}
+
+		.home {
+			min-height: 90vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: linear-gradient(120deg, #1e3c72 60%, #9d50bb 100%);
+			text-align: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.home::before {
+			content: '';
+			position: absolute;
+			top: -100px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 600px;
+			height: 600px;
+			background: radial-gradient(circle, #00ffe7 0%, transparent 70%);
+			opacity: 0.12;
+			z-index: 0;
+		}
+
+		.home h1 {
+			font-size: 3.2rem;
+			font-family: 'Orbitron', sans-serif;
+			font-weight: 900;
+			margin: 0.7rem 0;
+			color: #fff;
+			text-shadow: 0 2px 16px #9d50bb;
+			position: relative;
+			z-index: 1;
+		}
+
+		.home h1 span {
+			color: #00ffe7;
+			text-shadow: 0 2px 16px #00ffe7;
+		}
+
+		.go-down {
+			position: absolute;
+			left: 50%;
+			bottom: 30px;
+			transform: translateX(-50%);
+			background: linear-gradient(135deg, #00ffe7 0%, #9d50bb 100%);
+			color: #1e3c72;
+			border-radius: 50%;
+			width: 54px;
+			height: 54px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2.2rem;
+			box-shadow: 0 2px 16px #00ffe7;
+			transition: background 0.2s, color 0.2s;
+			z-index: 2;
+		}
+
+		.go-down:hover {
+			background: #fff;
+			color: #9d50bb;
+		}
+
+		h2 {
+			font-family: 'Orbitron', sans-serif;
+			font-size: 2.3rem;
+			color: #00ffe7;
+			margin-bottom: 1.5rem;
+			font-weight: 900;
+			letter-spacing: 2px;
+			text-shadow: 0 2px 16px #9d50bb;
+		}
+
+		.btn {
+			background: linear-gradient(90deg, #00ffe7 0%, #9d50bb 100%);
+			color: #1e3c72;
+			border: none;
+			padding: 0.8rem 2.2rem;
+			border-radius: 30px;
+			font-size: 1.15rem;
+			font-weight: 700;
+			cursor: pointer;
+			text-decoration: none;
+			transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+			margin-top: 1.2rem;
+			display: inline-block;
+			box-shadow: 0 2px 16px #00ffe7;
+		}
+
+		.btn:hover {
+			background: #fff;
+			color: #9d50bb;
+			box-shadow: 0 2px 24px #9d50bb;
+		}
+
+		.about .box,
+		.service .box,
+		.classes .box,
+		.price-package .box {
+			background: rgba(0, 255, 231, 0.06);
+			border-radius: 22px;
+			box-shadow: 0 2px 24px #9d50bb22;
+			padding: 2rem 1.5rem;
+			margin-bottom: 2rem;
+			transition: box-shadow 0.2s, background 0.2s;
+		}
+
+		.about .box:hover,
+		.service .box:hover,
+		.classes .box:hover,
+		.price-package .box:hover {
+			box-shadow: 0 4px 32px #00ffe7;
+			background: rgba(157, 80, 187, 0.10);
+		}
+
+		.about .img img,
+		.classes .img img,
+		.price-package .img img,
+		.gallery img {
+			border-radius: 16px;
+			width: 100%;
+			max-width: 340px;
+			box-shadow: 0 2px 24px #9d50bb44;
+			border: 3px solid #00ffe7;
+		}
+
+		.gallery .box {
+			display: inline-block;
+			margin: 0 1.5rem 2.5rem 1.5rem;
+		}
+
+		.gallery h2 {
+			text-align: center;
+			margin-bottom: 2.5rem;
+		}
+
+		.contact .form input,
+		.contact .form textarea {
+			width: 100%;
+			padding: 0.9rem;
+			margin-bottom: 1.2rem;
+			border-radius: 12px;
+			border: none;
+			font-size: 1.05rem;
+			background: #232946;
+			color: #fff;
+			box-shadow: 0 2px 8px #9d50bb22;
+		}
+
+		.contact .form button {
+			width: 100%;
+			padding: 0.9rem;
+			border-radius: 12px;
+			background: linear-gradient(90deg, #00ffe7 0%, #9d50bb 100%);
+			color: #1e3c72;
+			font-weight: 700;
+			border: none;
+			font-size: 1.15rem;
+			cursor: pointer;
+			transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+			box-shadow: 0 2px 16px #00ffe7;
+		}
+
+		.contact .form button:hover {
+			background: #fff;
+			color: #9d50bb;
+			box-shadow: 0 2px 24px #9d50bb;
+		}
+
+		.copy {
+			text-align: center;
+			color: #bdbdbd;
+			margin-top: 2.5rem;
+			font-size: 1.05rem;
+			letter-spacing: 1px;
+		}
+
+		.wow:first-child {
+			visibility: hidden;
+		}
+	</style>
+</head>
+</head>
+
+<body>
+
+	<!-- Start Header  -->
+	<header>
+		<div class="container">
+			<div class="logo">
+				<a href="">Fitness <span>Club</span></a>
+			</div>
+			<a href="javascript:void(0)" class="ham-burger">
+				<span></span>
+				<span></span>
+			</a>
+			<div class="nav">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#service">Services</a></li>
+					<li><a href="#classes">Classes</a></li>
+					<li><a href="#schedule">Schedule</a></li>
+					<li><a href="#price">Price</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- End Header  -->
+
+	<!-- Start Home -->
+	<section class="home wow flash" id="home">
+		<div class="container">
+			<h1 class="wow slideInLeft" data-wow-delay="1s">It's <span>gym</span> time. Let's go</h1>
+			<h1 class="wow slideInRight" data-wow-delay="1s">We are ready to <span>fit you</span></h1>
+		</div>
+		<!-- go down -->
+		<a href="#about" class="go-down">
+			<i class="fa fa-angle-down" aria-hidden="true"></i>
+		</a>
+		<!-- go down -->
+
+	</section>
+	<!-- End Home -->
+
+
+	<!-- Start About -->
+	<section class="about" id="about">
+		<div class="container">
+			<div class="content">
+				<div class="box wow bounceInUp">
+					<div class="inner">
+						<div class="img">
+							<img src="images/about1.jpg" alt="about" />
+						</div>
+						<div class="text">
+							<h4>Free Consultation</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+				</div>
+				<div class="box wow bounceInUp" data-wow-delay="0.2s">
+					<div class="inner">
+						<div class="img">
+							<img src="images/about2.jpg" alt="about" />
+						</div>
+						<div class="text">
+							<h4>Best Training</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+				</div>
+				<div class="box wow bounceInUp" data-wow-delay="0.4s">
+					<div class="inner">
+						<div class="img">
+							<img src="images/about3.jpg" alt="about" />
+						</div>
+						<div class="text">
+							<h4>Build Perfect Body</h4>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End About -->
+
+
+	<!-- Start Service -->
+	<section class="service" id="service">
+		<div class="container">
+			<div class="content">
+				<div class="text box wow slideInLeft">
+					<h2>Services</h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+						of type and scrambled it to make a type specimen book. It has survived not only five centuries
+					</p>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+						of type and scrambled it to make a type specimen book. It has survived not only five centuries
+					</p>
+					<a href="" class="btn">Start Now</a>
+				</div>
+				<div class="accordian box wow slideInRight">
+					<div class="accordian-container active">
+						<div class="head">
+							<h4>Cardiovascular Equipment</h4>
+							<span class="fa fa-angle-down"></span>
+						</div>
+						<div class="body">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+					<div class="accordian-container">
+						<div class="head">
+							<h4>Strength Training Equipment</h4>
+							<span class="fa fa-angle-up"></span>
+						</div>
+						<div class="body">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+					<div class="accordian-container">
+						<div class="head">
+							<h4>Group Fitness Class</h4>
+							<span class="fa fa-angle-up"></span>
+						</div>
+						<div class="body">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+					<div class="accordian-container">
+						<div class="head">
+							<h4>Other Services</h4>
+							<span class="fa fa-angle-up"></span>
+						</div>
+						<div class="body">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+								has been the industry's standard dummy text ever since the 1500s, when an unknown
+								printer took a galley of type and scrambled it to make a type specimen book. It has
+								survived not only five centuries</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Service -->
+
+	<!-- Start Classes -->
+	<section class="classes" id="classes">
+		<div class="container">
+			<div class="content">
+				<div class="box img wow slideInLeft">
+					<img src="images/class2.png" alt="classes" />
+				</div>
+				<div class="box text wow slideInRight">
+					<h2>Our Classes</h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+						of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+					</p>
+					<div class="class-items">
+						<div class="item wow bounceInUp">
+							<div class="item-img">
+								<img src="images/class1.jpg" alt="classes" />
+								<div class="price">
+									$99
+								</div>
+							</div>
+							<div class="item-text">
+								<h4>Stretching Training</h4>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+								<a href="">Get Details</a>
+							</div>
+						</div>
+						<div class="item wow bounceInUp">
+							<div class="item-text">
+								<h4>Stretching Training</h4>
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+								<a href="">Get Details</a>
+							</div>
+							<div class="item-img">
+								<img src="images/class1.jpg" alt="classes" />
+								<div class="price">
+									$99
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Classes -->
+
+	<!-- Start Today -->
+	<section class="start-today">
+		<div class="container">
+			<div class="content">
+				<div class="box text wow slideInLeft">
+					<h2>Start Your Training Today</h2>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+						of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+					</p>
+					<a href="" class="btn">Start Now</a>
+				</div>
+				<div class="box img wow slideInRight">
+					<img src="images/gallery4.jpg" alt="start today" />
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End Start Today -->
+
+	<!-- Start Schedule -->
+	<section class="schedule" id="schedule">
+		<div class="container">
+			<div class="content">
+				<div class="box text wow slideInLeft">
+					<h2>Classes Schedule</h2>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+						the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+						of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+					</p>
+					<img src="images/schedule1.png" alt="schedule" />
+				</div>
+				<div class="box timing wow slideInRight">
+					<table class="table">
+						<tbody>
+							<tr>
+								<td class="day">Monday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+							<tr>
+								<td class="day">Tuesday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+							<tr>
+								<td class="day">Wednesday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+							<tr>
+								<td class="day">Thursday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+							<tr>
+								<td class="day">Friday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+							<tr>
+								<td class="day">Saturday</td>
+								<td><strong>9:00 AM</strong></td>
+								<td>Body Building <br /> 9:00 to 10:00 AM</td>
+								<td>Room No:210</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Schedule -->
+
+	<!-- Start Gallery -->
+	<section class="gallery" id="gallery">
+		<h2>Workout Gallery</h2>
+		<div class="content">
+			<div class="box wow slideInLeft">
+				<img src="images/gallery1.jpg" alt="gallery" />
+			</div>
+			<div class="box wow slideInRight">
+				<img src="images/gallery2.jpg" alt="gallery" />
+			</div>
+			<div class="box wow slideInLeft">
+				<img src="images/gallery3.jpg" alt="gallery" />
+			</div>
+			<div class="box wow slideInRight">
+				<img src="images/gallery4.jpg" alt="gallery" />
+			</div>
+		</div>
+	</section>
+	<!-- End Gallery -->
+
+	<!-- Start Price -->
+	<section class="price-package" id="price">
+		<div class="container">
+			<h2>Choose Your Package</h2>
+			<p class="title-p">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+				has been the industry's standard dummy text ever since the 1500s, </p>
+			<div class="content">
+				<div class="box wow bounceInUp">
+					<div class="inner">
+						<div class="price-tag">
+							$59/Month
+						</div>
+						<div class="img">
+							<img src="images/price1.jpg" alt="price" />
+						</div>
+						<div class="text">
+							<h3>Body Building Training</h3>
+							<p>Get Free WiFi</p>
+							<p>Month to Month</p>
+							<p>No Time Restrictions</p>
+							<p>Gym and Cardio</p>
+							<p>Service Locker Rooms</p>
+							<a href="" class="btn">Join Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="box wow bounceInUp" data-wow-delay="0.2s">
+					<div class="inner">
+						<div class="price-tag">
+							$69/Month
+						</div>
+						<div class="img">
+							<img src="images/price2.jpg" alt="price" />
+						</div>
+						<div class="text">
+							<h3>Body Building Training</h3>
+							<p>Get Free WiFi</p>
+							<p>Month to Month</p>
+							<p>No Time Restrictions</p>
+							<p>Gym and Cardio</p>
+							<p>Service Locker Rooms</p>
+							<a href="" class="btn">Join Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="box wow bounceInUp" data-wow-delay="0.4s">
+					<div class="inner">
+						<div class="price-tag">
+							$99/Month
+						</div>
+						<div class="img">
+							<img src="images/price3.jpg" alt="price" />
+						</div>
+						<div class="text">
+							<h3>Body Building Training</h3>
+							<p>Get Free WiFi</p>
+							<p>Month to Month</p>
+							<p>No Time Restrictions</p>
+							<p>Gym and Cardio</p>
+							<p>Service Locker Rooms</p>
+							<a href="" class="btn">Join Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Price -->
+
+	<!-- Start Contact -->
+	<section class="contact" id="contact">
+		<div class="container">
+			<div class="content">
+				<div class="box form wow slideInLeft">
+					<form>
+						<input type="text" placeholder="Enter Name">
+						<input type="text" placeholder="Enter Email">
+						<input type="text" placeholder="Enter Mobile">
+						<textarea placeholder="Enter Message"></textarea>
+						<button type="submit">Send Message</button>
+					</form>
+				</div>
+				<div class="box text wow slideInRight">
+					<h2>Get Connected with Gym</h2>
+					<p class="title-p">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+						Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+					<div class="info">
+						<ul>
+							<li><span class="fa fa-map-marker"></span> Gali no 11, House no 11, Lahore</li>
+							<li><span class="fa fa-phone"></span> 92 9999999999</li>
+							<li><span class="fa fa-envelope"></span> info@gym.com</li>
+						</ul>
+					</div>
+					<div class="social">
+						<a href=""><span class="fa fa-facebook"></span></a>
+						<a href=""><span class="fa fa-linkedin"></span></a>
+						<a href=""><span class="fa fa-skype"></span></a>
+						<a href=""><span class="fa fa-youtube-play"></span></a>
+					</div>
+
+					<div class="copy">
+						PowerBy &copy; Ali Ahmad
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Contact -->
+
+
+
+	<!-- jquery -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+
+			$(".ham-burger, .nav ul li a").click(function () {
+
+				$(".nav").toggleClass("open")
+
+				$(".ham-burger").toggleClass("active");
+			})
+			$(".accordian-container").click(function () {
+				$(".accordian-container").children(".body").slideUp();
+				$(".accordian-container").removeClass("active")
+				$(".accordian-container").children(".head").children("span").removeClass("fa-angle-down").addClass("fa-angle-up")
+				$(this).children(".body").slideDown();
+				$(this).addClass("active")
+				$(this).children(".head").children("span").removeClass("fa-angle-up").addClass("fa-angle-down")
+			})
+
+			$(".nav ul li a, .go-down").click(function (event) {
+				if (this.hash !== "") {
+
+					event.preventDefault();
+
+					var hash = this.hash;
+
+					$('html,body').animate({
+						scrollTop: $(hash).offset().top
+					}, 800, function () {
+						window.location.hash = hash;
+					});
+
+					// add active class in navigation
+					$(".nav ul li a").removeClass("active")
+					$(this).addClass("active")
+				}
+			})
+		})
+
+	</script>
+	<script src="js/wow.min.js"></script>
+	<script>
+		wow = new WOW(
+			{
+				animateClass: 'animated',
+				offset: 0,
+			}
+		);
+		wow.init();
+	</script>
+</body>
+
+</html>
